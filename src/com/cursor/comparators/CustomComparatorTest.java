@@ -12,14 +12,12 @@ class CustomComparatorTest {
     }
 
     private void manualAddInSequence() {
-        set.add(2);
-        set.add(1);
-        set.add(4);
-        set.add(3);
-        set.add(5);
-        set.add(7);
-        set.add(6);
-        System.out.println("After adding elements in sequence the resulting set is:" + set);
+        System.out.print("After adding elements ");
+        for (int i = 0; i < 7; i++) {
+            set.add(numbers[i]);
+            System.out.print(""+ numbers[i]+", ");
+        }
+        System.out.println("in sequence the resulting set is: " + set);
         flush();
     }
 
@@ -33,13 +31,11 @@ class CustomComparatorTest {
     }
 
     private void checkingDuplicatesAndNegativeNumbers() {
-        List<Integer> list = new ArrayList<>(Arrays.asList(numbers));
-        list.add(4);
-        list.add(-2);
-        list.add(-5);
+        Collections.addAll(set, numbers);
+        set.add(4); // duplicate
+        set.add(-2); //negative even
+        set.add(-3); // negative odd
         System.out.println("To ensure the comparator works correctly on duplicates and negative integers");
-        System.out.println("We use a list of: " + list);
-        set.addAll(list);
         System.out.println("The resulting set should be ordered and without duplicates: " + set);
         flush();
     }
