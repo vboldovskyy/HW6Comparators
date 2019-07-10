@@ -4,24 +4,30 @@ import java.util.*;
 
 class CustomComparatorTest {
 
-    private static Integer[] numbers = {2, 1, 4, 3, 5, 7, 6};
+    private static final Integer[] numbers = {2, 1, 4, 3, 5, 7, 6};
     private Set<Integer> set;
 
     CustomComparatorTest() {
         set = new TreeSet<>(new OddEvenComparator());
     }
 
-    private void manualAddInSequence() {
+    void checkAll() {
+        addManuallyInSequence();
+        orderRandomly();
+        checkDuplicatesAndNegativeNumbers();
+    }
+
+    private void addManuallyInSequence() {
         System.out.print("After adding elements ");
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < numbers.length; i++) {
             set.add(numbers[i]);
-            System.out.print(""+ numbers[i]+", ");
+            System.out.print("" + numbers[i] + ", ");
         }
         System.out.println("in sequence the resulting set is: " + set);
         flush();
     }
 
-    private void randomOrder() {
+    private void orderRandomly() {
         List<Integer> list = new ArrayList<>(Arrays.asList(numbers));
         Collections.shuffle(list);
         System.out.println("Now putting elements in random order: " + list);
@@ -30,7 +36,7 @@ class CustomComparatorTest {
         flush();
     }
 
-    private void checkingDuplicatesAndNegativeNumbers() {
+    private void checkDuplicatesAndNegativeNumbers() {
         Collections.addAll(set, numbers);
         set.add(4); // duplicate
         set.add(-2); //negative even
@@ -38,12 +44,6 @@ class CustomComparatorTest {
         System.out.println("To ensure the comparator works correctly on duplicates and negative integers");
         System.out.println("The resulting set should be ordered and without duplicates: " + set);
         flush();
-    }
-
-    void checkAll() {
-        manualAddInSequence();
-        randomOrder();
-        checkingDuplicatesAndNegativeNumbers();
     }
 
     private void flush() {
